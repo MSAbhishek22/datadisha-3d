@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DataDisha 3D — India's Census, standing up</title>
+<meta name="description" content="A 3D explorer over the real Census of India 2011: every state a block, height and colour carrying real numbers.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{ "imports": {
+  "three": "./vendor/three.module.js",
+  "three/addons/": "./vendor/addons/"
+} }
+</script>
+</head>
+<body>
+
+<header class="masthead">
+  <p class="kicker">DataDisha 3D · A data story from the Census of India 2011</p>
+  <h1>India, standing up.</h1>
+  <p class="standfirst">Every state and union territory as a block on a table.
+  The height of a block is one real number, its colour is another. Turn the
+  table, click a block, put two states side by side — the census stops being
+  a spreadsheet and starts being a place.</p>
+</header>
+
+<main>
+  <!-- ============ CHAPTER 1 · THE PROBLEM ============ -->
+  <section class="chapter" aria-labelledby="problem-h">
+    <p class="chapter-no">Chapter one</p>
+    <h2 id="problem-h">The problem: a census nobody can see</h2>
+    <p>In 2011, India counted everyone. The result is one of the largest
+    public datasets on earth — and almost nobody ever looks at it, because it
+    lives in tables with hundreds of rows. A table can tell you that one
+    state's literacy rate is 94% and another's is 62%. It cannot make you
+    <em>feel</em> the distance between those two numbers. This page puts the
+    distance on a table, in 3D, where your eyes can measure it.</p>
+    <ul class="fact-strip" aria-label="The dataset at a glance">
+      <li><strong id="fact-districts">—</strong><span>districts in the source file</span></li>
+      <li><strong id="fact-states">—</strong><span>states &amp; union territories</span></li>
+      <li><strong id="fact-people">—</strong><span>people counted in 2011</span></li>
+    </ul>
+  </section>
+
+  <!-- ============ CHAPTER 2 · THE EXPLORER ============ -->
+  <section class="chapter" aria-labelledby="explorer-h">
+    <p class="chapter-no">Chapter two</p>
+    <h2 id="explorer-h">The explorer</h2>
+    <p class="hint">Drag to turn the table. Scroll to zoom. Hover a block to
+    read it, click to pin it. Tiles sit roughly where the state sits — this
+    is a chart, not a survey map.</p>
+
+    <div class="controls" role="group" aria-label="Explorer controls">
+      <label>Block height
+        <select id="height-metric"></select>
+      </label>
+      <label>Block colour
+        <select id="color-metric"></select>
+      </label>
+      <label>Go to a state
+        <select id="state-jump"><option value="">Choose…</option></select>
+      </label>
+      <button id="compare-toggle" type="button" aria-pressed="false">Compare two states</button>
+      <button id="spin-toggle" type="button" aria-pressed="false">Slow spin</button>
+      <button id="reset-view" type="button">Reset view</button>
+    </div>
+
+    <div class="explorer-grid">
+      <div class="stage-wrap">
+        <div id="stage" aria-label="3D table of Indian states. Use the Go to a state menu if you cannot use a mouse."></div>
+        <div id="labels" aria-hidden="true"></div>
+        <div id="tooltip" role="status"></div>
+        <p id="webgl-note" hidden>Your browser could not start WebGL, so the
+        3D table is not shown. The findings below and the state menu above
+        still work — every number on this page comes from the same data.</p>
+        <div class="legend" aria-label="Colour legend">
+          <span id="legend-label">Colour</span>
+          <span class="legend-bar" id="legend-bar"></span>
+          <span class="legend-scale"><span id="legend-low">low</span><span id="legend-high">high</span></span>
+        </div>
+      </div>
+
+      <aside class="panel" aria-live="polite">
+        <div id="detail">
+          <h3 id="detail-title">No state picked yet</h3>
+          <p id="detail-empty">Click any block and its full numbers land here —
+          every indicator, with the all-India figure beside it.</p>
+          <table id="detail-table" hidden>
+            <thead><tr><th scope="col">Measure</th><th scope="col" id="detail-col-a">State</th><th scope="col">India</th></tr></thead>
+            <tbody></tbody>
+          </table>
+          <table id="compare-table" hidden>
+            <thead><tr><th scope="col">Measure</th><th scope="col" id="compare-col-a">A</th><th scope="col" id="compare-col-b">B</th><th scope="col">Difference</th></tr></thead>
+            <tbody></tbody>
+          </table>
+          <button id="clear-selection" type="button" hidden>Clear selection</button>
+        </div>
+
+        <div class="rankings">
+          <h3 id="rank-title">Highest and lowest</h3>
+          <div class="rank-cols">
+            <div>
+              <h4>Top 5</h4>
+              <ol id="rank-top"></ol>
+            </div>
+            <div>
+              <h4>Bottom 5</h4>
+              <ol id="rank-bottom"></ol>
+            </div>
+          </div>
+          <p class="rank-note">Ranked by block height. Click a name to jump to it.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 3 · THE OUTCOME ============ -->
+  <section class="chapter" aria-labelledby="outcome-h">
+    <p class="chapter-no">Chapter three</p>
+    <h2 id="outcome-h">What the data shows</h2>
+    <p>Three things the table makes obvious. Each one is worked out from the
+    dataset itself when the page loads — no figure here was written by hand.</p>
+    <div class="findings">
+      <article class="finding"><p class="finding-no">Finding 1</p><p id="finding-1">Working it out…</p></article>
+      <article class="finding"><p class="finding-no">Finding 2</p><p id="finding-2">Working it out…</p></article>
+      <article class="finding"><p class="finding-no">Finding 3</p><p id="finding-3">Working it out…</p></article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p><strong>Source.</strong> Census of India 2011, Primary Census Abstract
+  (district level, 640 districts), Office of the Registrar General &amp;
+  Census Commissioner, India. Public copy used: the
+  <span class="mono">indiaset/census-2011</span> dataset on Hugging Face,
+  downloaded 24 November 2026. Full details in
+  <span class="mono">data/DATA_SOURCE.md</span>.</p>
+  <p><strong>Honest limits.</strong> The 2011 frame: Andhra Pradesh includes
+  Telangana and Jammu &amp; Kashmir includes Ladakh, as they stood at the
+  census. The source file has no area column, so density is not shown rather
+  than guessed. Built with Three.js; runs from static files, no server-side
+  code, no tracking.</p>
+</footer>
+
+<script src="data/states.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
