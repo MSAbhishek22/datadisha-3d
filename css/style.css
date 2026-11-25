@@ -23,6 +23,16 @@ body {
 
 /* ---------- masthead ---------- */
 .masthead { max-width: 1060px; margin: 0 auto; padding: 56px 24px 8px; }
+.hero-stage { margin-top: 20px; }
+.masthead #stage { height: min(54vh, 520px); }
+.hero-stage-hint { margin: 10px 0 0; color: var(--ink-soft); font-size: 14.5px; }
+.scroll-cue {
+  display: inline-block; margin-top: 12px;
+  color: var(--ink); text-decoration: none; font-weight: 700; font-size: 14.5px;
+  border: 1px solid var(--hairline); border-radius: 999px; padding: 6px 14px;
+  background: var(--paper);
+}
+.scroll-cue:hover { background: var(--ink); color: var(--paper); }
 .kicker {
   font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase;
   color: var(--terra); margin: 0 0 10px; font-weight: 600;
@@ -88,7 +98,7 @@ h2 { font-size: clamp(26px, 3.4vw, 34px); margin: 0 0 12px; }
 }
 
 /* ---------- explorer layout ---------- */
-.explorer-grid { display: grid; grid-template-columns: 1fr 330px; gap: 22px; align-items: start; }
+.explorer-grid { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: start; }
 @media (max-width: 920px) { .explorer-grid { grid-template-columns: 1fr; } }
 
 .stage-wrap {

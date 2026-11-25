@@ -461,6 +461,12 @@ renderLegend();
 renderPanel();
 try {
   initScene();
+  // J8: the table is alive on first load — slow spin until the reader takes over.
+  if (!reducedMotion && controls) {
+    spinOn = true;
+    controls.autoRotate = true;
+    spinBtn.setAttribute('aria-pressed', 'true');
+  }
 } catch (e) {
   document.getElementById('webgl-note').hidden = false;
   console.error('WebGL unavailable:', e);

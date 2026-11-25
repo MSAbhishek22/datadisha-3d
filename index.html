@@ -23,6 +23,22 @@
   The height of a block is one real number, its colour is another. Turn the
   table, click a block, put two states side by side — the census stops being
   a spreadsheet and starts being a place.</p>
+
+  <div class="stage-wrap hero-stage">
+    <div id="stage" aria-label="3D table of Indian states. Use the Go to a state menu if you cannot use a mouse."></div>
+    <div id="labels" aria-hidden="true"></div>
+    <div id="tooltip" role="status"></div>
+    <p id="webgl-note" hidden>Your browser could not start WebGL, so the
+    3D table is not shown. The findings below and the state menu above
+    still work — every number on this page comes from the same data.</p>
+    <div class="legend" aria-label="Colour legend">
+      <span id="legend-label">Colour</span>
+      <span class="legend-bar" id="legend-bar"></span>
+      <span class="legend-scale"><span id="legend-low">low</span><span id="legend-high">high</span></span>
+    </div>
+  </div>
+  <p class="hero-stage-hint">The table above is live — drag to turn it, scroll to zoom, hover a block to read it, click to pin it.</p>
+  <a class="scroll-cue" href="#problem-h">↓ Scroll — the story behind the table</a>
 </header>
 
 <main>
@@ -47,7 +63,7 @@
   <section class="chapter" aria-labelledby="explorer-h">
     <p class="chapter-no">Chapter two</p>
     <h2 id="explorer-h">The explorer</h2>
-    <p class="hint">Drag to turn the table. Scroll to zoom. Hover a block to
+    <p class="hint">The table above is live. Drag to turn it. Scroll to zoom. Hover a block to
     read it, click to pin it. Tiles sit roughly where the state sits — this
     is a chart, not a survey map.</p>
 
@@ -67,20 +83,6 @@
     </div>
 
     <div class="explorer-grid">
-      <div class="stage-wrap">
-        <div id="stage" aria-label="3D table of Indian states. Use the Go to a state menu if you cannot use a mouse."></div>
-        <div id="labels" aria-hidden="true"></div>
-        <div id="tooltip" role="status"></div>
-        <p id="webgl-note" hidden>Your browser could not start WebGL, so the
-        3D table is not shown. The findings below and the state menu above
-        still work — every number on this page comes from the same data.</p>
-        <div class="legend" aria-label="Colour legend">
-          <span id="legend-label">Colour</span>
-          <span class="legend-bar" id="legend-bar"></span>
-          <span class="legend-scale"><span id="legend-low">low</span><span id="legend-high">high</span></span>
-        </div>
-      </div>
-
       <aside class="panel" aria-live="polite">
         <div id="detail">
           <h3 id="detail-title">No state picked yet</h3>
